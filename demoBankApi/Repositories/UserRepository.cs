@@ -37,15 +37,17 @@ namespace demoBankApi.Repositories
             return await _context.Users.ToListAsync();
         }
 
-        public async Task<List<User>> FindByEmail(string Username)
+        public async Task<List<User>> FindByUsername(string Username)
         {
             return await _context.Users.Where(u=>u.Username == Username).ToListAsync();
         }
 
         public void DeleteById(long Id)
         {
-            User Placeholder = new User();
-            Placeholder.Id = Id;
+            User Placeholder = new()
+            {
+                Id = Id
+            };
 
             _context.Users.Remove(Placeholder);
         }

@@ -37,9 +37,10 @@ namespace demoBankApi.Repositories
             return await _context.Accounts.ToListAsync();
         }
 
-        public async Task<List<Account>> FindByUserId(long Id)
+        public async Task<Account?> FindByUserId(long Id)
         {
-            return await _context.Accounts.Where(a => a.User.Id == Id).ToListAsync();
+            return await _context.Accounts.FirstOrDefaultAsync(a => a.User.Id == Id);
+
         }
 
         public void DeleteById(long Id)

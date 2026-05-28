@@ -33,19 +33,9 @@ namespace demoBankApi.Repositories
             return await _context.Transactions.FindAsync(Id);
         }
 
-        public async Task<List<Transaction>> FindAll()
+        public async Task<List<Transaction>> FindByAccountId(long accountId)
         {
-            return await _context.Transactions.ToListAsync();
-        }
-
-        public async Task<List<Transaction>> FindByToAccountId(long accountId)
-        {
-            return await _context.Transactions.Where(t=>t.ToAccount.Id == accountId).ToListAsync();
-        }
-        
-        public async Task<List<Transaction>> FindByFromAccountId(long accountId)
-        {
-            return await _context.Transactions.Where(t=>t.FromAccount.Id == accountId).ToListAsync();
+            return await _context.Transactions.Where(t => t.ToAccount.Id == accountId || t.FromAccount.Id == accountId).ToListAsync();
         }
 
         public async Task Delete(long id)

@@ -41,10 +41,6 @@ namespace demoBankApi.Repositories
         {
             return await _context.Accounts.Where(a => a.User.Id == Id).ToListAsync();
         }
-        public async Task<List<Account>> FindByCpf(string Cpf)
-        {
-            return await _context.Accounts.Where(a => a.Cpf == Cpf).ToListAsync();
-        }
 
         public void DeleteById(long Id)
         {
